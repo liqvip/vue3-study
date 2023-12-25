@@ -11,5 +11,10 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules:{
+    //不强制要求组件名为驼峰风格
+    'vue/multi-word-component-names': 0,
   }
+
 }
