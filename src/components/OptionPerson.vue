@@ -1,3 +1,5 @@
+<!-- 选项式 API 编码方式 -->
+
 <template>
   <div class="person">
     <h2>姓名: {{name}}</h2>
