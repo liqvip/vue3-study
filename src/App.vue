@@ -1,16 +1,17 @@
 <template>
-  <CompositionPerson></CompositionPerson>
+  <CompositionPerson :persons="personList"></CompositionPerson>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="APP">
+  import { reactive } from 'vue';
   import CompositionPerson from './components/CompositionPerson.vue';
+  import {type Persons} from '@/types/Persons'
 
-  export default {
-    name: 'APP',  // 组件名
-    components: { // 注册组件
-      CompositionPerson
-    },
-  }
+  let personList = reactive<Persons>([
+    {id:'dfdf1', name: 'zhangsan', age: 28},
+    {id:'dfdf2', name: 'lisi', age: 18},
+    {id:'dfdf3', name: 'wangwu', age: 8},
+  ])
 </script>
 
 <style scoped>

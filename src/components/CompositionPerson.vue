@@ -2,43 +2,31 @@
 
 <template>
   <div class="person">
-    <h1>监听 ref 定义的对象类型数据</h1>
-    <h2>姓名：{{ person.name }}</h2>
-    <h2>年龄：{{ person.age }}</h2>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changePerson">修改整个人</button>
+    <ul>
+      <li v-for="p in persons" :key="p.id">{{ p.name }}--{{ p.age }}</li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts" name='Person456' setup>
-  import {ref, watch} from 'vue'
+  import { ref } from 'vue'
+  import {type Persons} from '@/types/Persons'
 
-  // 数据
-  let person = ref({
-    name: '张三',
-    age: 18,
-  });
+  // 只接收 persons
+  // defineProps(['persons']);
 
-  // 方法
-  function changeName(){
-    person.value.name += '~'
-  }
-  function changeAge(){
-    person.value.age += 1
-  }
-  function changePerson(){
-    person.value = {name: '李四', age:90}
-  }
+  // 接收 persons + 限制类型
+  defineProps<{persons: Persons}>();
 
-  // 监视的是对象的地址值，若想监视对象的内部属性变化，需要手动开启深度监视
-  // watch 的第一个参数是：被监视的数据
-  // watch 的第二个参数是：被监视的回调
-  // watch 的第三个参数是：配置对象(deep, immediate等等)
-  watch(person, (newValue, oldValue) => {
-    console.log('person 变化了', newValue, oldValue)
-  }, {deep: true, immediate: true});
-  
+  // 接收 persons + 限制类型 + 限制必要性 + 指定默认值
+  // withDefaults(defineProps<{persons?: Persons}>(),{
+  //   persons: ()=> [{id: '001', name: '康师傅', age: 18}]
+  // })
+
+  // 接收 list，同时将 props 保存起来
+  // let x = defineProps(['persons'])
+  // console.log(x.persons)
+
 </script>
 
 <style scoped>
