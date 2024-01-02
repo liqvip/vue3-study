@@ -2,31 +2,22 @@
 
 <template>
   <div class="person">
-    <ul>
-      <li v-for="p in persons" :key="p.id">{{ p.name }}--{{ p.age }}</li>
-    </ul>
+    <h2>当前求和为：{{ sum }}</h2>
+    <button @click="add">点我 sum+1</button>
+    <hr>
+    <img v-for="(dog, index) in dogList" :src="dog" :key="index">
+    <br>
+    <button @click="getDog">再来一只小狗</button>
   </div>
 </template>
 
 <script lang="ts" name='Person456' setup>
-  import { ref } from 'vue'
-  import {type Persons} from '@/types/Persons'
 
-  // 只接收 persons
-  // defineProps(['persons']);
+  import userDog from '@/hooks/useDog'
+  import useSum from '@/hooks/useSum'
 
-  // 接收 persons + 限制类型
-  defineProps<{persons: Persons}>();
-
-  // 接收 persons + 限制类型 + 限制必要性 + 指定默认值
-  // withDefaults(defineProps<{persons?: Persons}>(),{
-  //   persons: ()=> [{id: '001', name: '康师傅', age: 18}]
-  // })
-
-  // 接收 list，同时将 props 保存起来
-  // let x = defineProps(['persons'])
-  // console.log(x.persons)
-
+  const {sum, add} = useSum()
+  const {dogList, getDog} = userDog()
 </script>
 
 <style scoped>
@@ -39,5 +30,9 @@
 
   button {
     margin: 0 5px;
+  }
+
+  img {
+    height: 100px;
   }
 </style>
