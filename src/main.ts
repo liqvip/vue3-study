@@ -2,5 +2,11 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from '@/router'
 
-createApp(App).mount('#app')
+// 创建应用
+const app = createApp(App)
+
+// 使用路由器
+app.use(router)
+app.mount('#app')
