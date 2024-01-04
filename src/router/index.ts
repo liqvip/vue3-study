@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '@/pages/Home.vue'
 import News from '@/pages/News.vue'
 import About from '@/pages/About.vue'
+import Detail from '@/pages/Detail.vue'
 
 
 // 第二步：创建路由器
@@ -15,12 +16,24 @@ const router = createRouter({
   // 一个个的路由规则
   routes: [
     {
+      name: 'zhuye',
       path: '/home',
       component: Home
     },
     {
       path: '/news',
-      component:News 
+      component: News, 
+      children: [
+        {
+          name: 'detail',
+          path: 'detail',
+          component: Detail,
+          props(route){
+            console.log(route)
+            return route.query
+          },
+        },
+      ],
     },
     {
       path: '/about',
