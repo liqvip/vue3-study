@@ -16,6 +16,10 @@ const router = createRouter({
   // 一个个的路由规则
   routes: [
     {
+      path: '/',
+      redirect: '/home',
+    },
+    {
       name: 'zhuye',
       path: '/home',
       component: Home
