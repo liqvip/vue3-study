@@ -2,7 +2,7 @@
   <div>
     <button @click="getLoveTalk">获取一句土味情话</button>
     <ul>
-      <li v-for="talk in loveTalkStore.loveTalkList" :key="talk.id">{{ talk.title }}</li>
+      <li v-for="talk in loveTalkList" :key="talk.id">{{ talk.title }}</li>
     </ul>
   </div>
 </template>
@@ -11,9 +11,12 @@
 import axios from 'axios';
 import {nanoid} from 'nanoid'
 import {useLoveTalkStore} from '@/store/loveTalk'
+import { storeToRefs } from 'pinia';
 
   // 数据
   let loveTalkStore = useLoveTalkStore()
+
+  const {loveTalkList} = storeToRefs(loveTalkStore)
 
   // 方法
   async function getLoveTalk(){

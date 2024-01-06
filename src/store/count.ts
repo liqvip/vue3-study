@@ -6,5 +6,11 @@ export const useCountStore = defineStore('count', {
     return {
       sum: 6,
     }
+  },
+  actions: {
+    increment(value: number){
+      console.log('increment 被调用了', value)
+      this.sum += value
+    }
   }
 })
