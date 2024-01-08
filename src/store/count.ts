@@ -12,5 +12,12 @@ export const useCountStore = defineStore('count', {
       console.log('increment 被调用了', value)
       this.sum += value
     }
+  },
+  getters: {
+    bigSum(state): number{
+      console.log('@@@@!!!', state)
+      console.log('@@@@!!!', this)
+      return this.sum * 10
+    }
   }
 })
