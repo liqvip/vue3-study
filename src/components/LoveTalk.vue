@@ -18,6 +18,12 @@ import { storeToRefs } from 'pinia';
 
   const {loveTalkList} = storeToRefs(loveTalkStore)
 
+  // $subscribe 监听 state 变化
+  loveTalkStore.$subscribe((mutation, state)=>{
+    console.log('loveTalkStore 里面保存的数据发生了变化', state)
+    localStorage.setItem('loveTalkList', JSON.stringify(state.loveTalkList))
+  })
+
   // 方法
   async function getLoveTalk(){
     // 发请求，连续解构赋值+重命名
