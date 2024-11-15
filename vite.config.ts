@@ -8,11 +8,12 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 export default defineConfig({
   plugins: [
     vue(),
+    // 支持直接设置组件名
     VueSetupExtend(),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
 })

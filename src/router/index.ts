@@ -26,7 +26,7 @@ const router = createRouter({
   routes: [
     {
       name: 'zhuye',
-      path: '/home',
+      path: '/',
       component: Home
     },
     {

@@ -3,38 +3,66 @@
     <h2>Vue3 组件通信方式</h2>
     <!-- 导航区 -->
     <ul>
-      <li>
-        <RouterLink to="/props">1.props</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/event">2.自定义事件</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/mitt">3.mitt</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/model">4.v-model</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/attrs">5.$attrs</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/ref-parent">6.$refs、$parent</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/provide-inject">7.provide、inject</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/pinia">8.pinia</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/slot">9.slot</RouterLink>
+      <li v-for="(item, index) in pathList" :key="index">
+        <a href="" @click="changePage(item.path)">
+          {{ (index+1) + "、" + item.desc }}
+        </a>
       </li>
     </ul>
 
-    <!-- 展示区 -->
-    <div>
-      <RouterView/>
-    </div>
   </div>
 </template>
+
+<script setup lang="ts">
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter();
+
+  const pathList = [
+    {
+      path: '/props',
+      desc: 'props'
+    },
+    {
+      path: '/event',
+      desc: '自定义事件'
+    },
+    {
+      path: '/mitt',
+      desc: 'mitt'
+    },
+    {
+      path: '/model',
+      desc: 'v-model'
+    },
+    {
+      path: '/attrs',
+      desc: '$attrs'
+    },
+    {
+      path: '/ref-parent',
+      desc: '$refs、$parent'
+    },
+    {
+      path: '/provide-inject',
+      desc: 'provide、inject'
+    },
+    {
+      path: '/pinia',
+      desc: 'pinia'
+    },
+    {
+      path: '/slot',
+      desc: 'slot'
+    },
+  ];
+  const changePage = (path: string) => {
+    router.push({
+      path,
+    });
+  }
+</script>
+
+<style scoped>
+
+</style>

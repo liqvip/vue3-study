@@ -15,7 +15,13 @@
     };
   }
 
+  // 监听 ref 定义的对象类型数据中的某个属性，需要写成函数形式
   watch(() => person.value.name, (newVal, oldVal) => {
+    console.log('person 的 name 改变了',newVal, oldVal);
+  });
+
+  // 监听 ref 定义的对象类型数据，监听的是对象的地址值
+  watch(person, (newVal, oldVal) => {
     console.log('person 改变了',newVal, oldVal);
   });
 </script>
